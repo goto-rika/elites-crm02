@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
- def index
+  def index
 
   end
 
@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
       redirect_to customer_path(@comment.customer_id)
     else
       redirect_to customer_path(@comment.customer_id)
+    end
   end
 
   def edit
@@ -28,7 +29,16 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-
+   @comment = Comment.find(params[:id])
+   customer_id = @comment.customer_id
+   @comment.destroy
+   redirect_to customer_path(customer_id)
   end
-
+  
+  private
+  
+  def comment_params
+      params.require(:comment).permit(:body, :customer_id)
+  end
+  
 end
