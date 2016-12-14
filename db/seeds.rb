@@ -7,7 +7,6 @@ Post.create(position_name: "部長")
 Post.create(position_name: "課長")
 Post.create(position_name: "平社員")
 
-
 100.times do |index|
   Faker::Config.locale = :ja
   family_name = Faker::Name.last_name
@@ -19,7 +18,9 @@ Post.create(position_name: "平社員")
   Customer.create(
     family_name: family_name,
     given_name: given_name,
-    email: email
+    email: email,
+    company_id: rand(1..3),
+    post_id: rand(1..4)
   )
 end
 
