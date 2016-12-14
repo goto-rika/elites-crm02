@@ -16,8 +16,12 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to customer_path(@comment.customer_id)
     else
-      redirect_to customer_path(@comment.customer_id)
+      @customer = @comment.customer
+      @comments = @customer.comments
+      render template: "customers/show"
     end
+    
+    
   end
 
   def edit
@@ -40,5 +44,6 @@ class CommentsController < ApplicationController
   def comment_params
       params.require(:comment).permit(:body, :customer_id)
   end
+  
   
 end
