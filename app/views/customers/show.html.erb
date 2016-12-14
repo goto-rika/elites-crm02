@@ -29,6 +29,7 @@
       </div>
     <% end %>
   
+    <%= image_tag(current_user.image_url, :width => "60") %>
   
     <%= form_for(@comment, url: { controller: :comments, action: :create }) do |f| %>
      <% if @comment.errors.any? %>
